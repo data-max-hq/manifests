@@ -333,3 +333,64 @@ rules:
   - get
   - list
   - watch
+
+---
+
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  labels:
+    rbac.authorization.kubeflow.org/aggregate-to-kubeflow-edit: "true"
+  name: kubeflow-rayjob-edit
+rules:
+- apiGroups:
+  - ""
+  resources:
+  - pods
+  - services
+  - configmaps
+  - pods/log
+  verbs:
+  - create
+  - get
+  - list
+  - watch
+  - post
+  - delete
+  - patch
+- apiGroups:
+  - "sparkoperator.k8s.io"
+  resources:
+  - sparkapplications
+  verbs:
+  - create
+  - get
+  - list
+  - watch
+  - post
+  - delete
+  - patch
+- apiGroups:
+  - "ray.io"
+  resources:
+  - rayjobs
+  verbs:
+  - create
+  - get
+  - list
+  - watch
+  - post
+  - delete
+  - patch
+- apiGroups:
+  - "argoproj.io"
+  resources:
+  - workflowtaskresults
+  verbs:
+  - create
+  - get
+  - list
+  - watch
+  - post
+  - delete
+  - patch
